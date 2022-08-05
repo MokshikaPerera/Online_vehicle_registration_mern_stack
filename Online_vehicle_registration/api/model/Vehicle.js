@@ -13,11 +13,6 @@ const VehicleSchema = new mongoose.Schema({
       required: true,
     },
    
-    vehicle_type: {
-        type: String,
-        required: true
-      },
-
     license_plate: {
         type: String,
         required: true
@@ -43,3 +38,4 @@ const VehicleSchema = new mongoose.Schema({
 );
 
 module.exports = mongoose.model("Vehicle", VehicleSchema);
+
