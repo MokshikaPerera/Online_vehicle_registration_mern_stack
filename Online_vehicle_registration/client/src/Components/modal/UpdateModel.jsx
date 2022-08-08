@@ -92,7 +92,7 @@ export default function UpdateModel(props) {
 
     return (
         <>
-            <Button className='btn-success me-2' onClick={updateShow}>
+            <Button variant='warning' className='btn-success me-3' onClick={updateShow} style={{width:"100px" }}>
                 Edit
             </Button>
 

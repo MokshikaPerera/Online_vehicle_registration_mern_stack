@@ -89,7 +89,7 @@ const [posts, setPosts] = useState([])
 
     return (
         <>
-            <Button className='btn-danger me-2' onClick={DeleteShow}>
+            <Button className='btn-danger me-2' onClick={DeleteShow} style={{width:"100px"}}>
                 Delete
             </Button>
 

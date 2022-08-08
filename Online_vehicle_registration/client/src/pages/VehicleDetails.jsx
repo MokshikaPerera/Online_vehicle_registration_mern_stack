@@ -46,24 +46,62 @@ const [posts, setPosts] = useState([])
  return (
         <div style={{backgroundImage: "url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1520&q=80')",backgroundRepeat:"no-repeat"}}>
         <Header/>
-        <div className="card text-center"  style={{width:"400px", marginLeft:"600px",marginTop:"40px",marginBottom:"100px",height:"600px", }}>
+        <div className="card text-center"  style={{width:"500px", marginLeft:"550px",marginTop:"40px",marginBottom:"100px",height:"600px", background: "linear-gradient(140deg, rgba(72, 115, 150, 1) 50%, rgba(57, 108, 150, 0.65) 65%, rgba(42, 102, 150, 0.6) 50%, rgba(27, 95, 150, 0.95) 80%, rgba(12, 88, 150, 1) 90%, rgba(0, 83, 150, 0.8) 70%)",marginTop:"50px" }}>
   
           <div className="card-body" style={{"marginTop":"40px"}}>
-             <h1 className="card-title">Vehicle Details</h1>
-             <br/>
-             <div className="row-md-6 mb-4">
-                    <label className="form-label" htmlFor="form3Example1n">License Plate</label>
-                  <h2 className="card-title">{posts.name}</h2>
-                  </div>
-                  <br/>
-                  <h3 className="card-text">{posts.vehicle_type}</h3>
-                  <br/>
-                  <h3 className="card-text">{posts.license_plate}</h3>
-                  <br/>
-                  <h3 className="card-text">{posts.contact_number}</h3>
-                  <br/>
-                  <h3 className="card-text">{posts.license_type}</h3>
-                  <br/>
+             <h1 className="card-title text-white">Vehicle Details</h1>
+             <br />
+             <div class="container text-light ">
+                <div class="row">
+                    <div class="col d-flex text-left" style={{marginLeft:"50px"}}>
+                    <h4>Name</h4>
+                    </div>
+                    <div class="col d-flex text-left">
+                    <h6 className="card-title" style={{marginLeft:"20px"}}>{posts.name}</h6>
+                    </div>
+                </div>
+<br />
+                <div class="row">
+                    <div class="col d-flex text-left" style={{marginLeft:"50px"}}>
+                    <h4>Vehicle Type</h4>
+                    </div>
+                    <div class="col d-flex text-left">
+                    <h6 className="card-text" style={{marginLeft:"20px"}}>{posts.vehicle_type}</h6>
+                    </div>
+                </div>
+<br />
+                <div class="row">
+                    <div class="col d-flex text-left" style={{marginLeft:"50px"}}>
+                    <h4>Licience Plate</h4>
+                    </div>
+                    <div class="col d-flex text-left">
+                    <h6 className="card-text" style={{marginLeft:"20px"}}>{posts.license_plate}</h6>
+                    </div>
+                </div>
+<br />
+                <div class="row">
+                    <div class="col d-flex text-left" style={{marginLeft:"50px"}}>
+                    <h4>Contact Number</h4>
+                    </div>
+                    <div class="col d-flex text-left">
+                    <h6 className="card-text"style={{marginLeft:"20px"}}>{posts.contact_number}</h6>
+                    </div>
+                </div>
+<br />
+                <div class="row">
+                    <div class="col d-flex text-left" style={{marginLeft:"50px"}}>
+                    <h4>Licience Type</h4>
+                    </div>
+                    <div class="col d-flex text-left">             
+                    <h6 className="card-text" style={{marginLeft:"20px"}}>{posts.license_type}</h6>
+                    </div>
+                </div>
+
+
+            </div>
+              
+                
+   <br /><br />
              <UpdateModel/>
              <DeleteModel/>
   </div>
