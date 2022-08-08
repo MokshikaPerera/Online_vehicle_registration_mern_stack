@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <header>
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light " style={{ backgroundColor: '#caced1' }}>
       <div class="container-fluid">
         <button
           class="navbar-toggler"

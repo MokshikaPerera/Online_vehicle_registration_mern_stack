@@ -12,6 +12,11 @@ const VehicleSchema = new mongoose.Schema({
       type:String,
       required: true,
     },
+
+    vehicle_type: {
+      type:String,
+      required: true,
+    },
    
     license_plate: {
         type: String,

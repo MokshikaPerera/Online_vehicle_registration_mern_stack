@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import Button from 'react-bootstrap/Button';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
+import { generatePath, useNavigate } from 'react-router-dom';
 
 
 
@@ -12,14 +13,22 @@ import Header from '../Components/Header';
 export default function VehicleRegister() {
  
   const [vid, setVid] = useState("");
-  const [license_type, setLicenseType] = useState("");
+  const [vehicle_type, setVehicleType] = useState("");
   const [license_plate, setLicensePlate] = useState("");
   const [name, setName] = useState("");
   const [contact_number, setContactNumber] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleProceed = (e) => {
+    
+    vid && navigate(generatePath("/vehicledetails/:vid", { vid }));
+  };
+
   
   const userData ={
     vid,
-    license_type,
+    vehicle_type,
     license_plate,
     name,
     contact_number,
@@ -29,19 +38,23 @@ export default function VehicleRegister() {
 
   function submitForm(e){
     e.preventDefault();
-    if(license_type.length === 0 || license_plate.length === 0 || name.length === 0 || contact_number.length === 0  ){
+    if(vehicle_type.length === 0 || license_plate.length === 0 || name.length === 0 || contact_number.length === 0  ){
       swal(" Fields Cannot empty !","Please enter all data !", "error");
     }else{
       console.log(userData);
       axios.post("http://localhost:5000/api/vehicle",userData)
       .then(function (response) {
         console.log(response);
-        setLicenseType("");
+        setVehicleType("");
         setLicensePlate("");
         setName("");
         setContactNumber("");
-        swal({ text: "Successfully Added", icon: "success", button: "Okay!"})
-        window.location.replace("/vehicledetails");
+        swal({ text: "Successfully Added", icon: "success", button: "Okay!"}).then((res)=>{
+          navigate(`/vehicledetails/${response.data.vid}`,{replace:true});
+        })
+        // window.location.replace(`/vehicledetails/${vid}`);
+       
+        console.log(response.data)
       })
       // .catch(function (error) {
       //   console.log(error);
@@ -72,13 +85,13 @@ export default function VehicleRegister() {
                 <div >
                   <div className="col-md-6 mb-4">
                     <div className="form-outline" onSubmit={submitForm}>
-                      <input type="text" id="form3Example1m" className="form-control form-control-lg" value={license_type} onChange={(e)=>setLicenseType(e.target.value)} />
-                      <label className="form-label" htmlFor="form3Example1m">License Type</label>
+                      <input type="text" id="form3Example1m" className="form-control form-control-lg" placeholder='Car/Van' value={vehicle_type} onChange={(e)=>setVehicleType(e.target.value)} />
+                      <label className="form-label" htmlFor="form3Example1m">Vehicle Type</label>
                     </div>
                   </div>
                   <div className="col-md-6 mb-4">
                     <div className="form-outline">
-                      <input type="text" id="form3Example1n" className="form-control form-control-lg" value={license_plate} onChange={(e)=>setLicensePlate(e.target.value)} />
+                      <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='13 Sri 9999/250-9999/WP GA-9999' value={license_plate} onChange={(e)=>setLicensePlate(e.target.value)} />
                       <label className="form-label" htmlFor="form3Example1n">License Plate</label>
                     </div>
                   </div>
@@ -87,22 +100,24 @@ export default function VehicleRegister() {
                 <div >
                   <div className="col-md-6 mb-4">
                     <div className="form-outline">
-                      <input type="text" id="form3Example1m1" className="form-control form-control-lg" value={name} onChange={(e)=>setName(e.target.value)} />
+                      <input type="text" id="form3Example1m1" className="form-control form-control-lg" placeholder='L.M.Perera' value={name} onChange={(e)=>setName(e.target.value)} />
                       <label className="form-label" htmlFor="form3Example1m1">Name</label>
                     </div>
                   </div>
                   <div className="col-md-6 mb-4">
                     <div className="form-outline">
-                      <input type="text" id="form3Example1n1" className="form-control form-control-lg" value={contact_number} onChange={(e)=>setContactNumber(e.target.value)} />
+                      <input type="text" id="form3Example1n1" className="form-control form-control-lg" placeholder='0715694887' value={contact_number} onChange={(e)=>setContactNumber(e.target.value)} />
                       <label className="form-label" htmlFor="form3Example1n1">Contact Number</label>
                     </div>
                     <br/>
                     <br/>
                   </div>
-                  <Button variant="primary" type="submit" onClick={submitForm}  style={{height:"40px", width:"100%",}}>
+               
+                  <Button variant="primary" type="submit"  onClick={(e) => { submitForm(e); handleProceed(e);}}  style={{height:"40px", width:"100%",}}>
                      Submit
                   </Button>
-                  
+                 
+                 
                 </div>
 
               </div>

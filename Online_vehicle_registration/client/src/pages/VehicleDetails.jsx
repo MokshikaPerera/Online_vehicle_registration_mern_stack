@@ -1,78 +1,74 @@
-import React from 'react';
-import { useState } from 'react';
 import axios from 'axios';
-import swal from 'sweetalert';
-import Button from 'react-bootstrap/Button';
+import React, { useEffect, useState , } from 'react'
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 
+import { useParams ,Link } from "react-router-dom";
+import DeleteModel from '../Components/modal/DeleteModel';
+import UpdateModel from '../Components/modal/UpdateModel';
 
 
+export default function VehicleDetails(props) {
 
-export default function VehicleDetails() {
- 
+  const [vehicle, setVehicle] = useState([]);
+  
   const [vid, setVid] = useState("");
-  const [license_type, setLicenseType] = useState("");
+  const [vehicle_type, setVehicleType] = useState("");
   const [license_plate, setLicensePlate] = useState("");
   const [name, setName] = useState("");
   const [contact_number, setContactNumber] = useState("");
-  
-  const userData ={
-    vid,
-    license_type,
-    license_plate,
-    name,
-    contact_number,
-  }
+  const [license_type, setLicenseType] = useState("");
+
+  // const [data, setData] = useState([]);
   
 
+  // useEffect(async()=>{
+  //     let result = await fetch("http://localhost:8000/api/vehicle/"+props.match.params.id)
+  //     console.log(result)
+  // },[])
 
-  function submitForm(e){
-    e.preventDefault();
-    if(license_type.length === 0 || license_plate.length === 0 || name.length === 0 || contact_number.length === 0  ){
-      swal(" Fields Cannot empty !","Please enter all data !", "error");
-    }else{
-      console.log(userData);
-      axios.post("http://localhost:5000/api/vehicle",userData)
-      .then(function (response) {
-        console.log(response);
-        setLicenseType("");
-        setLicensePlate("");
-        setName("");
-        setContactNumber("");
-        swal({ text: "Successfully Added", icon: "success", button: "Okay!"})
-        window.location.replace("/vehicledetails");
-      })
-      // .catch(function (error) {
-      //   console.log(error);
-      //   alert("not added");
-      // });
-    }
+  // Get ID from URL
+const params = useParams();
     
-  }
+const [posts, setPosts] = useState([])
 
-    return (
-        <div >
+    useEffect(()=> {
+        axios.get(`http://localhost:5000/api/vehicle/${params.vid}`)
+        .then(res => {
+            console.log(res)
+            setPosts(res.data)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+    }, [])
+
+ return (
+        <div style={{backgroundImage: "url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1520&q=80')",backgroundRepeat:"no-repeat"}}>
         <Header/>
-        {/* <div
-            className="hpimage"
-            style={{
-            backgroundImage: "url('https://img.freepik.com/free-vector/realistic-studio-lights-empty-background-design_1017-27233.jpg?w=2000')",height: "110vh"
-            }}
-            ></div> */}
-        <div class="card text-center" className="hpimage"
-            style={{
-            backgroundImage: "url('https://img.freepik.com/free-vector/realistic-studio-lights-empty-background-design_1017-27233.jpg?w=2000')",height: "110vh"
-            }} >
-  <div class="card-header">Featured</div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div className="card text-center"  style={{width:"400px", marginLeft:"600px",marginTop:"40px",marginBottom:"100px",height:"600px", }}>
+  
+          <div className="card-body" style={{"marginTop":"40px"}}>
+             <h1 className="card-title">Vehicle Details</h1>
+             <br/>
+             <div className="row-md-6 mb-4">
+                    <label className="form-label" htmlFor="form3Example1n">License Plate</label>
+                  <h2 className="card-title">{posts.name}</h2>
+                  </div>
+                  <br/>
+                  <h3 className="card-text">{posts.vehicle_type}</h3>
+                  <br/>
+                  <h3 className="card-text">{posts.license_plate}</h3>
+                  <br/>
+                  <h3 className="card-text">{posts.contact_number}</h3>
+                  <br/>
+                  <h3 className="card-text">{posts.license_type}</h3>
+                  <br/>
+             <UpdateModel/>
+             <DeleteModel/>
   </div>
-  <div class="card-footer text-muted">2 days ago</div>
+  
 </div>
-
 
 <Footer/>
         </div>
