@@ -91,7 +91,7 @@ export default function VehicleRegister() {
                   </div>
                   <div className="col-md-6 mb-4">
                     <div className="form-outline">
-                      <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='13 Sri 9999/250-9999/WP GA-9999' value={license_plate} onChange={(e)=>setLicensePlate(e.target.value)} />
+                      <input type="text" id="form3Example1n" className="form-control form-control-lg" placeholder='250-9999/WP GA-9999' value={license_plate} onChange={(e)=>setLicensePlate(e.target.value)} />
                       <label className="form-label" htmlFor="form3Example1n">License Plate</label>
                     </div>
                   </div>
