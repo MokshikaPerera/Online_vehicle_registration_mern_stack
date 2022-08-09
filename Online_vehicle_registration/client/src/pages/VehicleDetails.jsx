@@ -44,7 +44,7 @@ const [posts, setPosts] = useState([])
     }, [])
 
  return (
-        <div style={{backgroundImage: "url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1520&q=80')",backgroundRepeat:"no-repeat"}}>
+        <div style={{backgroundImage: "url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1520&q=80')",backgroundRepeat:"no-repeat",WebkitBackgroundSize:"cover",backgroundSize:"cover"}}>
         <Header/>
         <div className="card text-center"  style={{width:"500px", marginLeft:"550px",marginTop:"40px",marginBottom:"100px",height:"600px", background: "linear-gradient(140deg, rgba(72, 115, 150, 1) 50%, rgba(57, 108, 150, 0.65) 65%, rgba(42, 102, 150, 0.6) 50%, rgba(27, 95, 150, 0.95) 80%, rgba(12, 88, 150, 1) 90%, rgba(0, 83, 150, 0.8) 70%)",marginTop:"50px" }}>
   

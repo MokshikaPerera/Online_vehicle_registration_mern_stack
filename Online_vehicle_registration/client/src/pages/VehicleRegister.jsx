@@ -50,7 +50,7 @@ export default function VehicleRegister() {
         setName("");
         setContactNumber("");
         swal({ text: "Successfully Added", icon: "success", button: "Okay!"}).then((res)=>{
-          navigate(`/vehicledetails/${response.data.vid}`,{replace:true});
+          navigate(`/Vehicledetails/${response.data.vid}`,{replace:true});
         })
         // window.location.replace(`/vehicledetails/${vid}`);
        
